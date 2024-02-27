@@ -4,66 +4,13 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>JokeGen</title>
-    <style>
-      body {
-        font-family: monospace;
-        height: 100%;
-      }
-
-      h2 {
-        font-size: 24px;
-      }
-
-      h3 {
-        font-size: 20px;
-      }
-
-      .reveal-button {
-        outline: none;
-        border: 1px solid rgb(232, 232, 232);
-        background-color: white;
-        border-radius: 5px;
-        cursor: pointer;
-        font-family: monospace;
-        font-weight: bold;
-        font-size: 14px;
-        line-height: 36px;
-        padding: 5px 25px;
-      }
-
-      .reveal-button:hover {
-        /* box-shadow: 0 0 0 0.5px rgb(255, 32, 32); */
-        background: #000000;
-        text-decoration: none;
-        color: white;
-        transition: cubic-bezier(0.075, 0.82, 0.165, 1);
-        transition-duration: 500ms;
-      }
-
-      .joke-card {
-        display: flex;
-        margin: 20px 0;
-        width: 100%;
-      }
-      .items {
-        width: 100%;
-        padding: 5px 20px 20px;
-        border: 1px solid rgb(232, 232, 232);
-        background-color: white;
-        border-radius: 5px;
-      }
-      .card-info {
-        margin-top: 40px;
-        display: flex;
-        justify-content: space-between;
-      }
-    </style>
+    <link rel="stylesheet" href="/styles/main.css" />
   </head>
   <body>
     <!-- Categories Programming, Misc, Dark, Pun, Spooky, Christmas -->
     <form action="/" method="post">
       <select name="category" id="cat-select">
-        <option value="" data-display="Select">Random</option>
+        <option value="" data-display="Select">Any</option>
         <option value="Programming">Programming</option>
         <option value="Dark">Dark</option>
         <option value="Spooky">Spooky</option>
@@ -74,19 +21,35 @@
       <button class="form-submit" type="submit">Go</button>
     </form>
 
+    <a href="/favlist">Show Favourites</a>
+
     <section class="joke-card">
       <article class="items">
         <h2><%= setup %></h2>
         <h3 style="display: none" id="del"><%= delivery %></h3>
+
         <input
           id="reveal"
           class="reveal-button"
           type="button"
           value="Expose the Punchline" />
 
+        <button
+          id="reload"
+          type="submit"
+          class="reveal-button"
+          style="display: none">
+          <a href="/"> Another One </a>
+        </button>
+
         <div class="card-info">
-          <span class="joke-type"></span>
-          <span class="fav"></span>
+          <span class="joke-category"> Category: <%= category %> </span>
+          <span><a href="">Share</a></span>
+          <span class="fav">
+            <form action="/fav" method="post">
+              <button type="submit">Add to Fav</button>
+            </form>
+          </span>
         </div>
       </article>
     </section>
@@ -95,8 +58,11 @@
       document.addEventListener("DOMContentLoaded", function () {
         var deliveryText = document.getElementById("del");
         var revealButton = document.getElementById("reveal");
+        var reloadButton = document.getElementById("reload");
         revealButton.addEventListener("click", function () {
           deliveryText.style.display = "block";
+          revealButton.style.display = "none";
+          reloadButton.style.display = "inline-block";
         });
       });
     </script>

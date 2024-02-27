@@ -1,1 +1,64 @@
+body {
+  font-family: monospace;
+  height: 100%;
+}
 
+h2 {
+  font-size: 24px;
+}
+
+h3 {
+  font-size: 20px;
+}
+
+a {
+  text-decoration: none;
+}
+
+.reveal-button {
+  outline: none;
+  border: 1px solid rgb(232, 232, 232);
+  background-color: white;
+  border-radius: 5px;
+  cursor: pointer;
+  font-family: monospace;
+  font-weight: bold;
+  font-size: 14px;
+  line-height: 36px;
+  padding: 5px 25px;
+}
+
+.reveal-button:hover {
+  /* box-shadow: 0 0 0 0.5px rgb(255, 32, 32); */
+  background: #000000;
+  text-decoration: none;
+  color: white;
+  transition: cubic-bezier(0.075, 0.82, 0.165, 1);
+  transition-duration: 500ms;
+}
+
+.joke-card {
+  display: flex;
+  margin: 20px 0;
+  width: 100%;
+}
+.items {
+  width: 100%;
+  padding: 5px 20px 20px;
+  border: 1px solid rgb(232, 232, 232);
+  background-color: white;
+  border-radius: 5px;
+}
+.card-info {
+  margin-top: 40px;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.card-info span {
+  margin-right: 20px;
+}
+
+.card-info span :last-child {
+  margin-right: 0;
+}
