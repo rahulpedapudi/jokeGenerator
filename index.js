@@ -24,7 +24,6 @@ var fav = [];
 app.post("/fav", (req, res) => {
   console.log(result.data.id);
   fav.push(result.data.id);
-  res.redirect("/");
 });
 
 // ! handles the favourite list and renders them

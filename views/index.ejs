@@ -25,7 +25,7 @@
 
     <section class="joke-card">
       <article class="items">
-        <h2><%= setup %></h2>
+        <h2 id="copyText"><%= setup %></h2>
         <h3 style="display: none" id="del"><%= delivery %></h3>
 
         <input
@@ -46,9 +46,12 @@
           <span class="joke-category"> Category: <%= category %> </span>
           <span><a href="">Share</a></span>
           <span class="fav">
-            <form action="/fav" method="post">
-              <button type="submit">Add to Fav</button>
+            <form id="favForm">
+              <button type="submit">Add to Favorites</button>
             </form>
+          </span>
+          <span>
+            <button onclick="copyToClipboard()">Copy Text</button>
           </span>
         </div>
       </article>
@@ -64,6 +67,27 @@
           revealButton.style.display = "none";
           reloadButton.style.display = "inline-block";
         });
+      });
+
+      const favForm = document.getElementById("favForm");
+
+      // Add event listener to the form submission
+      favForm.addEventListener("submit", async function (event) {
+        // Prevent the default form submission behavior
+        event.preventDefault();
+
+        // Perform your desired action (e.g., send AJAX request)
+        try {
+          const response = await fetch("/fav", {
+            method: "POST",
+            // Add any necessary headers or body data
+          });
+
+          // Handle the response as needed
+          console.log("Favorite added successfully!");
+        } catch (error) {
+          console.error("Error adding favorite:", error);
+        }
       });
     </script>
   </body>
